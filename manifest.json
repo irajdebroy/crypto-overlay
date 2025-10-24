@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Crypto Trading Signal Overlay",
+  "version": "1.0",
+  "description": "Displays crypto trading signals based on technical patterns and sentiment",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.binance.com/*",
+    "https://min-api.cryptocompare.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.tradingview.com/*",
+        "https://*.binance.com/*",
+        "https://*.coinbase.com/*",
+        "https://*.dexscreener.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["overlay.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["overlay.html", "overlay.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Trading Signals"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
