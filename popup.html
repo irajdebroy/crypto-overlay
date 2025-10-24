@@ -1,27 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Signal Overlay</title>
-  <style>
-    body { font-family: Arial, sans-serif; width:260px; padding:10px; }
-    button { padding:8px; width:100%; border-radius:8px; border:0; background:#111; color:#fff; cursor:pointer; }
-  </style>
+  <title>Crypto Overlay Settings</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <h3>Signal Overlay</h3>
-  <p>Overlay runs on supported pages. Use the on-page "Select Price Element" to pick the price if auto-detect fails.</p>
-  <button id="open">Open overlay on active tab</button>
-  <script>
-    document.getElementById('open').addEventListener('click', async ()=>{
-      const tabs = await chrome.tabs.query({active: true, currentWindow: true});
-      if (tabs[0]) {
-        chrome.scripting.executeScript({
-          target: { tabId: tabs[0].id },
-          files: ['content.js']
-        });
-      }
-    });
-  </script>
+<body class="popup">
+  <h2>Crypto Overlay Assistant</h2>
+  <div class="setting">
+    <label>
+      <input type="checkbox" id="toggleTesting" />
+      Enable Testing Mode (Fake Buys/Sells)
+    </label>
+  </div>
+
+  <div class="setting">
+    <button id="resetProfit">Reset Fake Profit</button>
+  </div>
+
+  <div class="footer">
+    <small>v1.2 | For Pump.fun & DexScreener</small>
+  </div>
+
+  <script src="popup.js"></script>
 </body>
 </html>
