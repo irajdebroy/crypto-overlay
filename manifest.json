@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Price Overlay Signals",
-  "version": "1.0",
-  "description": "Shows simple buy/sell signals (EMA crossover + RSI) overlaid on crypto pages. Does not trade.",
+  "name": "Price Overlay Simulator",
+  "version": "1.5",
+  "description": "Shows buy/sell signals and simulates fake trading with analytics overlay on crypto sites.",
   "permissions": [
     "storage",
     "scripting",
@@ -14,17 +14,16 @@
     "<all_urls>"
   ],
   "action": {
-    "default_title": "Price Overlay Signals",
+    "default_title": "Price Overlay Simulator",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
       "matches": [
         "*://*.pump.fun/*",
-        "*://*.dexscreener.com/*",
-        "*://*/*"
+        "*://*.dexscreener.com/*"
       ],
-      "js": ["content.js"],
+      "js": ["content.js", "settings.js"],
       "css": ["overlay.css"]
     }
   ],
