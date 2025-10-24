@@ -1,33 +1,30 @@
 {
   "manifest_version": 3,
-  "name": "Price Overlay Simulator",
-  "version": "1.5",
-  "description": "Shows buy/sell signals and simulates fake trading with analytics overlay on crypto sites.",
-  "permissions": [
-    "storage",
-    "scripting",
-    "activeTab"
-  ],
-  "host_permissions": [
-    "*://*.pump.fun/*",
-    "*://*.dexscreener.com/*",
-    "<all_urls>"
-  ],
-  "action": {
-    "default_title": "Price Overlay Simulator",
-    "default_popup": "popup.html"
-  },
+  "name": "Crypto Overlay Assistant",
+  "description": "Displays buy/sell indicators and fake testing analytics for crypto sites like pump.fun and DEX Screener.",
+  "version": "1.2",
+  "permissions": ["storage", "scripting", "activeTab"],
   "content_scripts": [
     {
-      "matches": [
-        "*://*.pump.fun/*",
-        "*://*.dexscreener.com/*"
-      ],
-      "js": ["content.js", "settings.js"],
-      "css": ["overlay.css"]
+      "matches": ["*://*.pump.fun/*", "*://*.dexscreener.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
     }
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
   "icons": {
-    "48": "icon48.png"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   }
 }
