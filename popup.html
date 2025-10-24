@@ -1,72 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <style>
-        body {
-            width: 300px;
-            padding: 16px;
-            background: #1a1f2e;
-            color: white;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-        
-        .settings-section {
-            margin-bottom: 16px;
-        }
-        
-        .settings-section h3 {
-            margin: 0 0 8px 0;
-            font-size: 14px;
-            color: #94a3b8;
-        }
-        
-        .setting-item {
-            margin-bottom: 8px;
-        }
-        
-        label {
-            display: block;
-            font-size: 12px;
-            margin-bottom: 4px;
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 6px 8px;
-            background: #2a2f45;
-            border: 1px solid #3c4254;
-            border-radius: 4px;
-            color: white;
-            font-size: 12px;
-        }
-        
-        .info {
-            font-size: 11px;
-            color: #64748b;
-            margin-top: 16px;
-            text-align: center;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Signal Overlay</title>
+  <style>
+    body { font-family: Arial, sans-serif; width:260px; padding:10px; }
+    button { padding:8px; width:100%; border-radius:8px; border:0; background:#111; color:#fff; cursor:pointer; }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h2>📈 Trading Signals</h2>
-        <div style="font-size: 12px; color: #94a3b8;">Prototype v1.0</div>
-    </div>
-    
-    <div class="settings-section">
-        <h3>Display Settings</h3>
-        
-        <div class="setting-item">
-            <label for="opacity">Overlay Opacity</label>
-            <input type="range" id="opacity" min="0.5" max="1" step="0.1" value="0.95">
-        </div>
-        
-        <div class="setting-item">
-            <label for="refreshInterval">Refresh Interval (seconds
+  <h3>Signal Overlay</h3>
+  <p>Overlay runs on supported pages. Use the on-page "Select Price Element" to pick the price if auto-detect fails.</p>
+  <button id="open">Open overlay on active tab</button>
+  <script>
+    document.getElementById('open').addEventListener('click', async ()=>{
+      const tabs = await chrome.tabs.query({active: true, currentWindow: true});
+      if (tabs[0]) {
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          files: ['content.js']
+        });
+      }
+    });
+  </script>
+</body>
+</html>
